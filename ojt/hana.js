@@ -16,7 +16,7 @@ router.post('/', function (req, res, next) {
   var clientip = ipInfo.clientIp
   /* Change Data */
   var dataReq = {
-    JENIS: req.body.account,
+    JENIS: req.body.jenis,
     TAHUN: req.body.tahun
   }
   console.log('Request to API: ' + conf.url.inqA + ' ' + JSON.stringify(dataReq))
