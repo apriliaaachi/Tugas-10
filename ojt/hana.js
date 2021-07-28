@@ -23,8 +23,8 @@ router.post('/', function (req, res, next) {
   var dataRes = {
     'rsp': "000",
     'rspdesc': "Success",
-    'jenis': req.body.JENIS,
-    'tahun': req.body.TAHUN,
+    'jenis': dataReq.JENIS,
+    'tahun': dataReq.TAHUN,
     'merk': "toyota",
     'model': "toyota camry",
     'harga': "581",
