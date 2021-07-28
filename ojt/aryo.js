@@ -16,19 +16,17 @@ router.post('/', function (req, res, next) {
   var ipInfo = getIP(req)
   var clientip = ipInfo.clientIp
   /* Change Data */
-//   var dataReq = {
-//     IWSID: req.headers.id,
-//     IWSREF: ' ',
-//     IID: ' ',
-//     IACCTNO: req.body.account
-//   }
-//   console.log('Request to API: ' + conf.url.inqA + ' ' + JSON.stringify(dataReq))
+   var dataReq = {
+     gambarID: req.body.gambarID,
+     nominalID: req.body.nominalID
+   }
+   console.log('Request to API: ' + conf.url.inqA + ' ' + JSON.stringify(dataReq))
 
   var dataRes = {
     'rsp': '000',
     'rspdesc': 'Success',
-    'gambar': req.body.gambar,
-    'nominal_pecahan': req.body.nominal,
+    'gambar': dataReq.gambarID,
+    'nominal_pecahan': dataReq.nominalID,
     'informasi': {
         'tahun_emisi': '2016',
         'dibuat_oleh': 'PERURI',
