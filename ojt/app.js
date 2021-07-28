@@ -4,7 +4,7 @@ var bodyParser = require('body-parser')
 
 /* router */
 var credential = require('./credential')
-var priscil = require('./priscill')
+var priscilia = require('./priscillia')
 var aryo = require('./aryo')
 var hana = require('./hana')
 var bayu = require('./bayu')
@@ -16,7 +16,7 @@ router.use(bodyParser.urlencoded({ extended: true }))
 
 /* use Function */
 router.use('/', credential)
-router.use('/priscill', priscil)
+router.use('/priscill', priscilia)
 router.use('/aryo', aryo)
 router.use('/hana', hana)
 router.use('/bayu', bayu)
