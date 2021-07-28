@@ -28,8 +28,7 @@ router.post('/', function (req, res, next) {
     'nik': dataReq.NIK,
     'nama': dataReq.NAMA,
     'email': "example@gmail.com",
-    'status': "Sudah Vaksin Pertama",
-    'statusdesc': parseRes.OSTSDSC
+    'status': "Sudah Vaksin Pertama"
   }
 
     res.send(dataRes)
