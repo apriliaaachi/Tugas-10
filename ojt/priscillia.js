@@ -14,7 +14,7 @@ router.post('/', function (req, res, next) {
     /* Get IP first */
     var ipInfo = getIP(req)
     var clientip = ipInfo.clientIp
-    /* Change Data */ /* BELOW ARE BODY REQUEST */
+    /* BELOW ARE BODY REQUEST */
     var dataReq = {
         receiverID: req.body.receiverID,
         postcardID: req.body.postcardID
