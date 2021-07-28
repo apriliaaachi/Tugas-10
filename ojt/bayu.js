@@ -23,9 +23,9 @@ router.post("/", function (req, res, next) {
     rspdesc: "Success",
     merek: req.body.merek,
     detail: req.body.detail,
-    mesin: parseRes.mesin,
-    jenis: parseRes.jenis,
-    drivetrain: parseRes.drivetrain,
+    mesin: "combustion",
+    jenis: "sport",
+    drivetrain: "AWD",
   };
 
   res.send(dataRes);
