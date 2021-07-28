@@ -16,20 +16,19 @@ router.post('/', function (req, res, next) {
   var clientip = ipInfo.clientIp
   /* Change Data */
   var dataReq = {
-    IWSID: req.headers.id,
-    IWSREF: ' ',
-    IID: ' ',
-    IACCTNO: req.body.account
+    JENIS: req.body.account,
+    TAHUN: req.body.tahun
   }
   console.log('Request to API: ' + conf.url.inqA + ' ' + JSON.stringify(dataReq))
   var dataRes = {
     'rsp': "000",
     'rspdesc': "Success",
-    'trxid': req.body.trxid,
-    'account': req.body.account,
-    'nama': parseRes.OSNAME,
-    'status': parseRes.OSTATUS,
-    'statusdesc': parseRes.OSTSDSC
+    'jenis': req.body.JENIS,
+    'tahun': req.body.TAHUN,
+    'merk': "toyota",
+    'model': "toyota camry",
+    'harga': "581",
+    'mesin': "2,5 L"
   }
 
     res.send(dataRes)
