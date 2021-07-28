@@ -31,14 +31,6 @@ router.post('/', function (req, res, next) {
         'birthday': "23/12/1966"
     }
 
-    if (err) { 
-        console.log(err)
-        dataRes = {
-            'rsp': '006',
-            'rspdesc': 'Sorry, the postcard ID ' + dataReq.postcardID + ' is not found'
-        }
-    }
-
     res.send(dataRes)
     console.log('Response to client: ' + clientip + ' ' + JSON.stringify(dataRes))
 })
