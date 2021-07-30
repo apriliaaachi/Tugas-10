@@ -1,8 +1,8 @@
 {
   "credential": [
     {
-      "id": "BTNEWALLET",
-      "key": "BtNT3sting",
+      "id": "BTNOJTAPI",
+      "key": "wDaBRdXxOtrwM57l",
       "secret": "7pycJTpgo4",
       "sign": false
     }
@@ -13,5 +13,6 @@
   },
   "url": {
     "inqA": "http://localhost:2209/api/inq/inqa2"
-  }
+  },
+  "port": 6620
 }
