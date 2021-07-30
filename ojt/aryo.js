@@ -4,7 +4,7 @@ var bodyParser = require('body-parser')
 var getIP = require('ipware')().get_ip
 var conf = require('./config.json')
 var request = require('superagent')
-const { receiveMessageOnPort } = require('worker_threads')
+
 
 /* Body Parser */
 router.use(bodyParser.json())
