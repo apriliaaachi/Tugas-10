@@ -14,4 +14,4 @@ router.use(bodyParser.urlencoded({ extended: true }))
 router.use('/ojt', ojt)
 
 console.log('The Gateway on port:' + conf.port)
-router.listen(8080, '0.0.0.0')
+router.listen(conf.port, '0.0.0.0')
