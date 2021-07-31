@@ -56,7 +56,7 @@ function checkTahun(param) {
   ];
   let pass = true;
   alphabet.forEach((item, index) => {
-    if (param.includes(alphabet[index]) === true) {
+    if (param.toLowerCase().includes(alphabet[index]) === true) {
       pass = false;
     }
   });
