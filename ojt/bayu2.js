@@ -13,9 +13,15 @@ function checkMerek(param) {
     }
   });
   if (pass === true) {
-    return `{\n  "input" : "` + param + `",\n  "description" : "[SUCCESS] Merek tersedia"\n}`;
+    return {
+      success: true,
+      message: `{\n  "input" : "` + param + `",\n  "description" : "[SUCCESS] Merek tersedia"\n}`
+    };
   } else {
-    return `{\n  "input" : "` + param + `",\n  "description" : "[FAILED] Merek harus tidak mengandung angka"\n}`;
+    return {
+      success: true,
+      message: `{\n  "input" : "` + param + `",\n  "description" : "[FAILED] Merek harus tidak mengandung angka"\n}`
+    };
   }
 }
 
@@ -55,9 +61,15 @@ function checkTahun(param) {
     }
   });
   if (pass === true) {
-    return `{\n  "input" : "` + param + `",\n  "description" : "[SUCCESS] Tahun tersedia"\n}`;
+    return {
+      success: true,
+      message: `{\n  "input" : "` + param + `",\n  "description" : "[SUCCESS] Tahun tersedia"\n}`
+    };
   } else {
-    return `{\n  "input" : "` + param + `",\n  "description" : "[FAILED] Tahun harus tidak mengandung huruf"\n}`;
+    return {
+      success: true,
+      message: `{\n  "input" : "` + param + `",\n  "description" : "[FAILED] Tahun harus tidak mengandung huruf"\n}`
+    };
   }
 }
 
@@ -72,11 +84,21 @@ router.post("/", function (req, res, next) {
   };
   console.log("Request to API: " + conf.url + " " + JSON.stringify(dataReq));
   const dataRes = {
-    rsp: "000",
-    rspdesc: "Success",
-    merek: checkMerek(req.body.merek),
-    tahun: checkTahun(req.body.tahun),
+    rsp: "",
+    rspdesc: "",
+    merek: checkMerek(req.body.merek).message,
+    tahun: checkTahun(req.body.tahun).message,
   };
+  if (
+    checkMerek(req.body.merek).success === true &&
+    checkTahun(req.body.tahun).success === true
+  ) {
+    dataRes.rsp = "000";
+    dataRes.rspdesc = "Success";
+  } else {
+    dataRes.rsp = "998";
+    dataRes.rspdesc = "Invalid data format";
+  }
   res.send(dataRes);
   console.log(
     "Response to client: " + clientip + " " + JSON.stringify(dataRes)
