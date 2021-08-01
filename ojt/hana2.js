@@ -21,24 +21,26 @@ router.post('/', function (req, res, next) {
   }
   console.log('Request to API: ' + conf.url.inqA + ' ' + JSON.stringify(dataReq))
 
-  const regexfornum =/^[0-9]+$/;
-  const regexforalp = /^[a-zA-Z]+$/;
+  var regexalphabet = /[a-zA-Z]/;
+  var regexnumber =/[0-9]/;
+  var regexcharacter = /[-._!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/
 
-  if (dataReq.jenis.match(regexfornum)!= null){
+  if (dataReq.jenis.match(regexnumber)!= null || dataReq.jenis.match(regexcharacter)!= null){
     var dataRes={
     'rsp' : '997',
-    'rspdesc' : 'Invalid Format. Inputted jenis must be string'
+    'rspdesc' : 'Invalid Format. Allow only alphabet input'
     } 
   }
 
-  if (dataReq.tahun.match(regexforalp)!= null){
+  if (dataReq.tahun.match(regexalphabet)!= null || dataReq.tahun.match(regexcharacter)!= null){
   var dataRes={
   'rsp' : '997',
-  'rspdesc' : 'Invalid Format. Inputted tahun must be number'
+  'rspdesc' : 'Invalid Format. Allow only numeric input'
     }  
   }
 
-  else if (dataReq.jenis.match(regexfornum)== null && dataReq.tahun.match(regexforalp)==null){
+  else if (dataReq.jenis.match(regexnumber)== null && dataReq.tahun.match(regexalphabet)==null 
+  && dataReq.jenis.match(regexcharacter)== null && dataReq.tahun.match(regexcharacter)== null ){
   var dataRes={
   'rsp': "000",
   'rspdesc': "Success",
