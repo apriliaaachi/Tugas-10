@@ -15,12 +15,12 @@ function checkMerek(param) {
   if (pass === true) {
     return {
       success: true,
-      message: `{\n  "input" : "` + param + `",\n  "description" : "[SUCCESS] Merek tersedia"\n}`
+      message: ""
     };
   } else {
     return {
-      success: true,
-      message: `{\n  "input" : "` + param + `",\n  "description" : "[FAILED] Merek harus tidak mengandung angka"\n}`
+      success: false,
+      message: "Merek tidak boleh mengandung angka. "
     };
   }
 }
@@ -56,19 +56,19 @@ function checkTahun(param) {
   ];
   let pass = true;
   alphabet.forEach((item, index) => {
-    if (param.includes(alphabet[index]) === true) {
+    if (param.toLowerCase().includes(alphabet[index]) === true) {
       pass = false;
     }
   });
   if (pass === true) {
     return {
       success: true,
-      message: `{\n  "input" : "` + param + `",\n  "description" : "[SUCCESS] Tahun tersedia"\n}`
+      message: ""
     };
   } else {
     return {
-      success: true,
-      message: `{\n  "input" : "` + param + `",\n  "description" : "[FAILED] Tahun harus tidak mengandung huruf"\n}`
+      success: false,
+      message: "Tahun tidak boleh mengandung huruf. "
     };
   }
 }
@@ -83,21 +83,24 @@ router.post("/", function (req, res, next) {
     tahun: req.body.tahun,
   };
   console.log("Request to API: " + conf.url + " " + JSON.stringify(dataReq));
-  const dataRes = {
-    rsp: "",
-    rspdesc: "",
-    merek: checkMerek(req.body.merek).message,
-    tahun: checkTahun(req.body.tahun).message,
-  };
+  const dataRes = {};
   if (
     checkMerek(req.body.merek).success === true &&
     checkTahun(req.body.tahun).success === true
   ) {
     dataRes.rsp = "000";
     dataRes.rspdesc = "Success";
+    dataRes.merek = req.body.merek;
+    dataRes.tahun = req.body.tahun;
   } else {
     dataRes.rsp = "998";
-    dataRes.rspdesc = "Invalid data format";
+    dataRes.rspdesc = "";
+    if (checkMerek(req.body.merek).success === false) {
+      dataRes.rspdesc = dataRes.rspdesc + checkMerek(req.body.merek).message;
+    }
+    if (checkTahun(req.body.tahun).success === false) {
+      dataRes.rspdesc = dataRes.rspdesc + checkTahun(req.body.tahun).message;
+    }
   }
   res.send(dataRes);
   console.log(
