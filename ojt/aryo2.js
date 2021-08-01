@@ -23,20 +23,12 @@ router.post("/", function (req, res, next) {
     "Request to API: " + conf.url.inqA + " " + JSON.stringify(dataReq)
   );
 
-  if (typeof dataReq.gambarID != "string") {
-    var dataRes = {
-      rsp: "997",
-      rspdesc: "Invalid Format Type of Data",
-    };
-  } else if (typeof dataReq.nominalID != "number") {
-    var dataRes = {
-      rsp: "997",
-      rspdesc: "Invalid Format Type of Data",
-    };
-  } else if (
-    typeof dataReq.nominalID == "number" &&
-    typeof dataReq.gambarID == "string"
-  ) {
+  // variabel regex untuk mengecek abjad didalam string dan alfabet didalam string
+  const regexfornum = /[0-9]/g;
+  const regexforalp = /[a-zA-Z\\s]/g;
+ 
+  // pengkondisian untuk memilih data yang tepat sesuai kondidi (abjad==abcdefg & angka=123)
+  if (dataReq.gambarID.match(regexfornum)== null && dataReq.nominalID.match(regexforalp)== null) {
     var dataRes = {
       rsp: "000",
       rspdesc: "Success",
@@ -45,9 +37,19 @@ router.post("/", function (req, res, next) {
       informasi: {
         tahun_emisi: "2016",
         dibuat_oleh: "PERURI",
-        status: "Aktif",
-      },
+        status: "Aktif"
+      }
     };
+  } else if (dataReq.gambarID.match(regexfornum)!= null) {
+    var dataRes = {
+      rsp: "997",
+      rspdesc: "Invalid Format Type of Data - Diperlukan inputan abjad saja"
+    };
+  } else if (dataReq.nominalID.match(regexforalp)!= null){
+    var dataRes = {
+      rsp:"997",
+      rspdesc: "Invalid Format Type of Data - Diperlukan inputan numeric saja"
+    }
   }
 
   res.send(dataRes);
