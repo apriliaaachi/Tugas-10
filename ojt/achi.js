@@ -7,7 +7,7 @@ var request = require('superagent')
 
 /* Body Parser */
 router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.urlencoded({extended: true}))
 
 /* Inquiry Credit */
 router.post('/', function (req, res, next) {
@@ -31,8 +31,8 @@ router.post('/', function (req, res, next) {
     'status': "Sudah Vaksin Pertama"
   }
 
-    res.send(dataRes)
-    console.log('Response to client: ' + clientip + ' ' + JSON.stringify(dataRes))
+  res.send(dataRes)
+  console.log('Response to client: ' + clientip + ' ' + JSON.stringify(dataRes))
 })
 
 module.exports = router
