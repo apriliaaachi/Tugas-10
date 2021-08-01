@@ -16,21 +16,40 @@ router.post('/', function (req, res, next) {
   var clientip = ipInfo.clientIp
   /* Change Data */
   var dataReq = {
-    JENIS: req.body.jenis,
-    TAHUN: req.body.tahun
+    jenis: req.body.jenis,
+    tahun: req.body.tahun
   }
   console.log('Request to API: ' + conf.url.inqA + ' ' + JSON.stringify(dataReq))
-  var dataRes = {
-    'rsp': "000",
-    'rspdesc': "Success",
-    'jenis': req.body.JENIS,
-    'tahun': req.body.TAHUN,
-    'merk': "toyota",
-    'model': "toyota camry",
-    'harga': "581",
-    'mesin': "2,5 L"
+
+  const regexfornum =/^[0-9]+$/;
+  const regexforalp = /^[a-zA-Z]+$/;
+
+  if (dataReq.jenis.match(regexfornum)!= null){
+    var dataRes={
+    'rsp' : '997',
+    'rspdesc' : 'Invalid Format. Inputted jenis must be string'
+    } 
   }
 
+  if (dataReq.tahun.match(regexforalp)!= null){
+  var dataRes={
+  'rsp' : '997',
+  'rspdesc' : 'Invalid Format. Inputted tahun must be number'
+    }  
+  }
+
+  else if (dataReq.jenis.match(regexfornum)== null && dataReq.tahun.match(regexforalp)==null){
+  var dataRes={
+  'rsp': "000",
+  'rspdesc': "Success",
+  'jenis': dataReq.jenis,
+  'tahun': dataReq.tahun,
+  'merk': "toyota",
+  'model': "toyota camry",
+  'harga': "581",
+  'mesin': "2,5 L"
+  }
+}
     res.send(dataRes)
     console.log('Response to client: ' + clientip + ' ' + JSON.stringify(dataRes))
 })
