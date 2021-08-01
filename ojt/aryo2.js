@@ -45,12 +45,12 @@ router.post("/", function (req, res, next) {
     };
   } else if (dataReq.gambarID.match(regexfornum) != null) {
     var dataRes = {
-      rsp: "997",
+      rsp: "005",
       rspdesc: "Invalid Format Type of Data - Diperlukan inputan abjad saja",
     };
   } else if (dataReq.nominalID.match(regexforalp) != null) {
     var dataRes = {
-      rsp: "997",
+      rsp: "005",
       rspdesc: "Invalid Format Type of Data - Diperlukan inputan numeric saja",
     };
   }
