@@ -30,8 +30,7 @@ router.post("/", function (req, res, next) {
       dataRes.rspdesc = "Invalid data format, iv length must be 16 character.";
     } else if (req.body.secret.length !== 32) {
       dataRes.rsp = "997";
-      dataRes.rspdesc =
-        "Invalid data format, secret length must be 32 character.";
+      dataRes.rspdesc = "Invalid data format, secret length must be 32 character.";
     } else {
       const AES256CBC = CryptoJS.AES.decrypt(
         CryptoJS.lib.CipherParams.create({
